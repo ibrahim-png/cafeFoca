@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cafe Login</title>
+</head>
+<body>
+
+  <h2>Garson Girişi</h2>
+
+  <input id="username" type="text" placeholder="Kullanıcı adı">
+  <br><br>
+
+  <input id="password" type="password" placeholder="Şifre">
+  <br><br>
+
+  <button onclick="login()">Giriş Yap</button>
+
+  <p id="message"></p>
+
+  <script>
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById("message").innerText = "Login başarılı";
+        window.location.href = "/home";
+      } else {
+        document.getElementById("message").innerText = data.message;
+      }
+    }
+  </script>
+
+</body>
+</html>

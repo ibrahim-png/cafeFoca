@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Kayboldun</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#0f172a;
+      font-family:Arial, sans-serif;
+      color:white;
+      overflow:hidden;
+    }
+
+    .container{
+      text-align:center;
+      max-width:700px;
+      padding:40px;
+      position:relative;
+      z-index:2;
+    }
+
+    h1{
+      font-size:140px;
+      color:#38bdf8;
+      text-shadow:
+        0 0 10px rgba(56,189,248,0.8),
+        0 0 30px rgba(56,189,248,0.5);
+    }
+
+    h2{
+      font-size:34px;
+      margin-bottom:20px;
+    }
+
+    p{
+      color:#cbd5e1;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      background:#38bdf8;
+      color:#0f172a;
+      text-decoration:none;
+      border-radius:12px;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      background:#7dd3fc;
+    }
+
+    .ghost{
+      font-size:90px;
+      animation:float 3s ease-in-out infinite;
+      margin-bottom:10px;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-15px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    .bg-text{
+      position:absolute;
+      font-size:300px;
+      font-weight:bold;
+      color:rgba(255,255,255,0.03);
+      z-index:1;
+      user-select:none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="bg-text">404</div>
+
+  <div class="container">
+
+    <div class="ghost">👻</div>
+
+    <h1>404</h1>
+
+    <h2>
+      Baba Akü Yok!.</h2>
+
+    <a class="btn" href="/">
+      Beni kurtar ve ana sayfaya götür
+    </a>
+
+  </div>
+
+</body>
+</html>

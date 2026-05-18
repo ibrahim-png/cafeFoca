@@ -219,7 +219,12 @@
 
   <script>
     async function login(){
-      const username = document.getElementById("username").value.trim();
+      const username =
+  document
+    .getElementById("username")
+    .value
+    .trim()
+    .toLowerCase();
       const password = document.getElementById("password").value;
       const message = document.getElementById("message");
       const button = document.getElementById("loginBtn");

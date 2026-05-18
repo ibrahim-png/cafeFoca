@@ -390,16 +390,14 @@
 
     <div class="topbar-left">
       <h1>Sipariş Panosu</h1>
-      <span>
-        Cafe Focalina | Canlı Sipariş Takibi
-      </span>
     </div>
 
-    <button
-      class="logout-btn"
-    >
-      Çıkış
-    </button>
+<button
+  class="logout-btn"
+  onclick="logout()"
+>
+  Çıkış
+</button>
 
   </div>
 
@@ -662,6 +660,27 @@
     </div>
 
   </div>
+<script>
 
+  async function logout(){
+
+    try{
+
+      await fetch("/api/logout",{
+        method:"POST",
+        credentials:"include"
+      });
+
+      window.location.href =
+        "/login.html";
+
+    }catch(err){
+
+      alert("Çıkış yapılırken hata oluştu");
+
+    }
+  }
+
+</script>
 </body>
 </html>

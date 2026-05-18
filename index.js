@@ -28,6 +28,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  proxy: true,
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -35,7 +36,6 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 8
   }
 }));
-
 function requireLoginPage(req, res, next) {
   if (!req.session.user) {
     return res.redirect("/login.html");

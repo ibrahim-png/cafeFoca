@@ -60,12 +60,20 @@ app.get("/", (req, res) => {
   res.redirect("/login.html");
 });
 
+app.get("/login-bg.mp4", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login-bg.mp4"));
+});
+
 app.get("/login.html", (req, res) => {
   if (req.session.user) {
     return res.redirect("/home");
   }
 
   res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
+app.get("/video.mp4", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "video.mp4"));
 });
 
 app.get("/home", requireLoginPage, (req, res) => {

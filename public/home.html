@@ -42,25 +42,6 @@
       margin-bottom:8px;
     }
 
-    .topbar-left span{
-      color:#94a3b8;
-    }
-
-    .logout-btn{
-      border:none;
-      background:#dc2626;
-      color:white;
-      padding:12px 18px;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:700;
-      transition:.2s;
-    }
-
-    .logout-btn:hover{
-      transform:translateY(-1px);
-    }
-
     .board{
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -367,6 +348,45 @@
       font-weight:800;
     }
 
+    .bottom-bar{
+
+      margin-top:30px;
+
+      display:flex;
+
+      justify-content:flex-end;
+    }
+
+    .logout-btn{
+
+      width:220px;
+
+      border:none;
+
+      background:#dc2626;
+
+      color:white;
+
+      padding:14px 18px;
+
+      border-radius:16px;
+
+      cursor:pointer;
+
+      font-weight:800;
+
+      font-size:15px;
+
+      box-shadow:
+        0 12px 30px rgba(220,38,38,.35);
+
+      transition:.2s;
+    }
+
+    .logout-btn:hover{
+      transform:translateY(-2px);
+    }
+
     @media(max-width:1200px){
 
       .board{
@@ -378,6 +398,14 @@
 
       .board{
         grid-template-columns:1fr;
+      }
+
+      .bottom-bar{
+        justify-content:center;
+      }
+
+      .logout-btn{
+        width:100%;
       }
     }
 
@@ -391,13 +419,6 @@
     <div class="topbar-left">
       <h1>Sipariş Panosu</h1>
     </div>
-
-<button
-  class="logout-btn"
-  onclick="logout()"
->
-  Çıkış
-</button>
 
   </div>
 
@@ -504,8 +525,6 @@
         <h2>Hazırlanıyor</h2>
         <div class="count">2</div>
       </div>
-
-      <!-- GECIKEN -->
 
       <div class="order-card late-order">
 
@@ -670,27 +689,40 @@
     </div>
 
   </div>
-<script>
 
-  async function logout(){
+  <div class="bottom-bar">
 
-    try{
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      Çıkış Yap
+    </button>
 
-      await fetch("/api/logout",{
-        method:"POST",
-        credentials:"include"
-      });
+  </div>
 
-      window.location.href =
-        "/login.html";
+  <script>
 
-    }catch(err){
+    async function logout(){
 
-      alert("Çıkış yapılırken hata oluştu");
+      try{
 
+        await fetch("/api/logout",{
+          method:"POST",
+          credentials:"include"
+        });
+
+        window.location.href =
+          "/login.html";
+
+      }catch(err){
+
+        alert("Çıkış yapılırken hata oluştu");
+
+      }
     }
-  }
 
-</script>
+  </script>
+
 </body>
 </html>

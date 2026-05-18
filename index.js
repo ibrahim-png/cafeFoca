@@ -10,6 +10,7 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set("trust proxy", 1);
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -19,7 +20,6 @@ const pool = new Pool({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set("trust proxy", 1);
 app.use(session({
   store: new pgSession({
     pool: pool,

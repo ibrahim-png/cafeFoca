@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Focalina Board</title>
 
   <style>
@@ -15,6 +16,7 @@
 
     body{
       min-height:100vh;
+
       background:
         linear-gradient(
           135deg,
@@ -24,6 +26,7 @@
         );
 
       color:white;
+
       padding:28px;
     }
 
@@ -51,6 +54,11 @@
       border-radius:14px;
       cursor:pointer;
       font-weight:700;
+      transition:.2s;
+    }
+
+    .logout-btn:hover{
+      transform:translateY(-1px);
     }
 
     .board{
@@ -61,9 +69,11 @@
     }
 
     .column{
-      background:rgba(255,255,255,.05);
+      background:
+        rgba(255,255,255,.05);
 
-      border:1px solid rgba(255,255,255,.08);
+      border:
+        1px solid rgba(255,255,255,.08);
 
       border-radius:26px;
 
@@ -86,15 +96,21 @@
     }
 
     .count{
-      background:rgba(255,255,255,.10);
+      background:
+        rgba(255,255,255,.10);
+
       color:#cbd5e1;
+
       padding:5px 12px;
+
       border-radius:999px;
+
       font-size:13px;
     }
 
     .order-card{
       background:white;
+
       color:#111827;
 
       border-radius:22px;
@@ -111,8 +127,10 @@
     }
 
     @keyframes flyIn{
+
       from{
         opacity:0;
+
         transform:
           translateY(16px)
           scale(.96);
@@ -120,6 +138,7 @@
 
       to{
         opacity:1;
+
         transform:
           translateY(0)
           scale(1);
@@ -130,7 +149,6 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-
       margin-bottom:14px;
     }
 
@@ -208,27 +226,132 @@
     /* GECIKEN SIPARIS */
 
     .late-order{
-      animation:
-        latePulse 1s infinite;
+
+      position:relative;
+
+      overflow:hidden;
+
       border:
         3px solid #ef4444;
+
+      animation:
+        latePulse 1.1s infinite;
+
+      transition:.2s;
     }
 
     @keyframes latePulse{
 
       0%{
+
+        background:
+          #ffffff;
+
         box-shadow:
-          0 0 0 rgba(239,68,68,.0);
+          0 0 0 rgba(239,68,68,0);
+
+        transform:
+          scale(1);
+      }
+
+      25%{
+
+        background:
+          #fee2e2;
+
+        box-shadow:
+          0 0 20px rgba(239,68,68,.55);
+
+        transform:
+          scale(1.008);
       }
 
       50%{
+
+        background:
+          #fecaca;
+
         box-shadow:
-          0 0 28px rgba(239,68,68,.9);
+          0 0 38px rgba(239,68,68,.95);
+
+        transform:
+          scale(1.018);
+      }
+
+      75%{
+
+        background:
+          #fee2e2;
+
+        box-shadow:
+          0 0 20px rgba(239,68,68,.55);
+
+        transform:
+          scale(1.008);
       }
 
       100%{
+
+        background:
+          #ffffff;
+
         box-shadow:
-          0 0 0 rgba(239,68,68,.0);
+          0 0 0 rgba(239,68,68,0);
+
+        transform:
+          scale(1);
+      }
+    }
+
+    .late-order .items{
+      color:#7f1d1d;
+      font-weight:600;
+    }
+
+    .late-order .time{
+      color:#b91c1c;
+      font-weight:800;
+    }
+
+    .late-order .order-id{
+      color:#991b1b;
+    }
+
+    .late-order::after{
+
+      content:"";
+
+      position:absolute;
+
+      top:-120%;
+      left:-40%;
+
+      width:70%;
+      height:300%;
+
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(255,255,255,.45),
+          transparent
+        );
+
+      transform:
+        rotate(25deg);
+
+      animation:
+        shine 2.5s infinite;
+    }
+
+    @keyframes shine{
+
+      0%{
+        left:-60%;
+      }
+
+      100%{
+        left:140%;
       }
     }
 
@@ -245,12 +368,14 @@
     }
 
     @media(max-width:1200px){
+
       .board{
         grid-template-columns:repeat(2,1fr);
       }
     }
 
     @media(max-width:700px){
+
       .board{
         grid-template-columns:1fr;
       }
@@ -261,6 +386,22 @@
 
 <body>
 
+  <div class="topbar">
+
+    <div class="topbar-left">
+      <h1>Sipariş Panosu</h1>
+      <span>
+        Cafe Focalina | Canlı Sipariş Takibi
+      </span>
+    </div>
+
+    <button
+      class="logout-btn"
+    >
+      Çıkış
+    </button>
+
+  </div>
 
   <div class="board">
 
@@ -361,11 +502,15 @@
       <div class="order-card late-order">
 
         <div class="order-head">
-          <div class="order-id">#1018</div>
+
+          <div class="order-id">
+            #1018
+          </div>
 
           <div class="late-label">
             GECİKTİ
           </div>
+
         </div>
 
         <div class="items">
@@ -379,9 +524,11 @@
         </div>
 
         <div class="actions">
+
           <button class="success">
             Hazır
           </button>
+
         </div>
 
       </div>
@@ -515,49 +662,6 @@
     </div>
 
   </div>
-
-  <script>
-
-    async function loadUser(){
-
-      const res =
-        await fetch("/api/me",{
-          credentials:"include"
-        });
-
-      if(!res.ok){
-
-        window.location.href =
-          "/login.html";
-
-        return;
-      }
-
-      const user =
-        await res.json();
-
-      document
-        .getElementById("userInfo")
-        .innerText =
-          user.fullName +
-          " | " +
-          user.role;
-    }
-
-    async function logout(){
-
-      await fetch("/api/logout",{
-        method:"POST",
-        credentials:"include"
-      });
-
-      window.location.href =
-        "/login.html";
-    }
-
-    loadUser();
-
-  </script>
 
 </body>
 </html>
